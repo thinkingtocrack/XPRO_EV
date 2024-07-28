@@ -1,23 +1,10 @@
-import { Route,createBrowserRouter,createRoutesFromElements,RouterProvider} from 'react-router-dom'
-import Home from './pages/Home.tsx'
-import Login from './pages/Login.tsx'
-import Signup from './pages/Signup.tsx'
-import HomeComponent from './components/home/Index.tsx'
+import {RouterProvider} from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store, { persistor } from './store/configurestore.ts'
 import { PersistGate } from 'redux-persist/integration/react'
+import router from "./routes/route.tsx"
 
-const router=createBrowserRouter(
-  createRoutesFromElements(
-    <>
-      <Route path="/"  element={<Home  /> } >
-        <Route index element={<HomeComponent/>} />
-        <Route path="/login" element={<Login  />}/>
-        <Route path="/signup" element={<Signup/>}/>
-      </Route>
-    </>    
-  )
-)
+
 
 function App() {
   return (
