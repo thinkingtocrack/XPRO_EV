@@ -1,11 +1,11 @@
-import Header from "../components/header/Index";
-import { Outlet } from "react-router-dom";
+import Footer from '../components/footer/Index'
+import HomeComponent from '../components/home/Index'
 
 const Home = () => {
   return (
-    <>
-    <Header/>
-    <Outlet/>
+    <>  
+          <HomeComponent/>
+          <Footer/>
     </>
   )
 }

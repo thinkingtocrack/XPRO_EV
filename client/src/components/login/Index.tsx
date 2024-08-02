@@ -1,14 +1,15 @@
 import { useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, Navigate, useNavigate } from "react-router-dom"
 import axios from 'axios'
 import toast, { Toaster } from "react-hot-toast"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { loginStart,loginSucess,loginFailure } from "../../store/users/authSlice"
+import { RootType } from "../../store/configurestore"
 
 const Index = () => {
-
-  const dispatch=useDispatch()
+  const {isAuth} = useSelector((store:RootType)=>store.user.auth)
   const navigate=useNavigate()
+  const dispatch=useDispatch()
   const [username,setUsername]=useState('')
   const [password,setPassword]=useState('')
   const [rem,setRem]=useState(false)
@@ -54,6 +55,7 @@ const Index = () => {
   const inputclassname="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-100 dark:focus:ring-neutral-600"
 
   return (
+    isAuth?<Navigate to='/' />:
     <>
     <Toaster/>
     <div className='relative bg-black w-full h-screen'>

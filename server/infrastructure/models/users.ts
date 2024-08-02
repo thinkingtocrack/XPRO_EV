@@ -1,6 +1,4 @@
-import { timeStamp } from "console";
-import mongoose from "mongoose";
-import { string } from "zod";
+import mongoose,{Document,Model,InferSchemaType} from "mongoose";
 const Schema=mongoose.Schema
 
 
@@ -34,4 +32,10 @@ const userSchema=new Schema({
 })
 
 
-export default mongoose.model('user',userSchema)
+export type UserSchemaType = InferSchemaType<typeof userSchema>;
+
+export type UserModelType  =  Model<UserSchemaType & Document>;
+
+const UserModel: Model<UserSchemaType & Document> = mongoose.model<UserSchemaType & Document>('User', userSchema);
+
+export default UserModel

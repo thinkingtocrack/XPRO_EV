@@ -5,7 +5,6 @@ import { PersistGate } from 'redux-persist/integration/react'
 import router from "./routes/route.tsx"
 
 
-
 function App() {
   return (
     <>
