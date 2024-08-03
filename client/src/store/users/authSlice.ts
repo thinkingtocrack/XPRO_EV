@@ -31,7 +31,7 @@ const authSlice = createSlice({
             state.error=null
         },
         loginSucess:(state,action)=>{
-            state.userInfo=action.payload.userInfo
+            state.userInfo=action.payload.userData
             state.token=action.payload.token
             state.isLoading=false
             state.isAuth=true

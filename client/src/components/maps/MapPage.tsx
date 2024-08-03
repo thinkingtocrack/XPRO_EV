@@ -1,4 +1,3 @@
-// import { useState } from "react"
 import { 
   AdvancedMarker,
     APIProvider,
@@ -9,7 +8,6 @@ import {
     // InfoWindow
  } from "@vis.gl/react-google-maps";
 import { useEffect } from "react";
-import { darkModeStyles } from "./style";
 import { useDispatch, useSelector } from "react-redux";
 import { setLocation } from "../../store/users/locationSlice";
 import { RootType } from "../../store/configurestore";
@@ -48,9 +46,9 @@ export const Map_page = () => {
 
   return (
     <>
-      <APIProvider apiKey={env.VITE_GOOGLE_MAP_API}>
-          <div className="h-full">
-              <Map mapId={"1212"} defaultZoom={9} defaultCenter={location.lat && location.lng?{lat:location.lat,lng:location.lng}:undefined} styles={darkModeStyles}>
+      <APIProvider  apiKey={env.VITE_GOOGLE_MAP_API}>
+          <div className="h-3/4 w-full rounded-2xl overflow-hidden">
+              <Map mapId={env.VITE_GOOGLE_MAP_ID} defaultZoom={9} defaultCenter={location.lat && location.lng?{lat:location.lat,lng:location.lng}:undefined} disableDefaultUI>
               {location.lat && location.lng?
                 <AdvancedMarker position={{lat:location.lat,lng:location.lng}} >
                   <Pin/>
