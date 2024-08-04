@@ -1,8 +1,8 @@
 import {Navigate, Route,createBrowserRouter,createRoutesFromElements} from 'react-router-dom'
 import MainLayout from '../layout/Main.tsx'
-import HomePage from '../pages/Home.tsx'
-import LoginPage from '../pages/Login.tsx'
-import SignupPage from '../pages/Signup.tsx'
+import HomePage from '../pages/user/Home.tsx'
+import LoginPage from '../pages/user/Login.tsx'
+import SignupPage from '../pages/user/Signup.tsx'
 import AdminLayout from '../layout/Admin.tsx'
 import AdminLogin from '../pages/admin/AdminLogin.tsx'
 

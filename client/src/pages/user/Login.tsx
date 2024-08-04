@@ -1,6 +1,6 @@
-import Index from "../components/login/Index";
+import Index from "../../components/login/Index";
 import { useSelector} from "react-redux";
-import { RootType } from "../store/configurestore";
+import { RootType } from "../../store/configurestore";
 import { Navigate } from "react-router-dom";
 
 const Login = () => {
