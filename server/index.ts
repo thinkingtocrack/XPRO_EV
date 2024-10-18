@@ -1,29 +1,25 @@
-import express,{Express,Request,Response} from "express"
+import express from "express"
 import "dotenv/config"
-import cors from "cors"
 import mongoose from "mongoose"
-import { rateLimit } from 'express-rate-limit'
-import routers from "./application/routes/routers"
+import configRouter from "./config"
 
 
-const app = express()
-app.use(cors())
-const limiter = rateLimit({
-	windowMs: 15 * 60 * 1000, // 15 minutes
-	limit: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
-})
-app.use(limiter)
-
-mongoose.connect('mongodb://127.0.0.1:27017/xpro');
 
 
-app.use(express.urlencoded({ extended: true ,limit:'10mb'}));
-app.use(express.json({limit:'10mb'}))
+async function initServer(){
+	try {
+		await mongoose.connect('mongodb://127.0.0.1:27017/xpro')
+		const app = express()
+		app.listen(process.env.port,()=>{
+			console.log(`listening in port ${process.env.PORT}`)
+		})
+		app.use(configRouter)
+	} catch (error) {
+		console.log(error)
+	}
+}
+
+initServer()
 
 
-app.use('/api/auth/user',routers.userAuthRouter)
 
-
-app.listen(process.env.port,()=>{
-    console.log(`listening in port ${process.env.PORT}`)
-})
