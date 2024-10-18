@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 type locationType={
-    lng:number|null,
-    lat:number|null
+    lng:number,
+    lat:number
 }
 
 const location:locationType= {

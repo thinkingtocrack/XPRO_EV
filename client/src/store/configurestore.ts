@@ -1,8 +1,9 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import userReducer from "./users/userReducer";
+import adminReducer from './admin/adminReducer'
 import { persistStore } from 'redux-persist'
 
-const rootReducer = combineReducers({user:userReducer})
+const rootReducer = combineReducers({user:userReducer,admin:adminReducer})
 
 
 

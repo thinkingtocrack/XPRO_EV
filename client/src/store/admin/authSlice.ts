@@ -7,19 +7,19 @@ export type UserInfo={
 }
 
 type InitialState={
-    userInfo:null | UserInfo,
+    adminInfo:null | UserInfo,
     isLoading:boolean,
     isAuth:boolean,
     error:null | object,
-    token:string | null
+    accessToken:string | null
 }
 
 const initialState:InitialState={
-    userInfo:null,
+    adminInfo:null,
     isLoading:false,
     isAuth:false,
     error:null,
-    token:null
+    accessToken:null
 }
 
 const adminAuthSlice = createSlice({
@@ -31,22 +31,22 @@ const adminAuthSlice = createSlice({
             state.error=null
         },
         loginSucess:(state,action)=>{
-            state.userInfo=action.payload.userData
-            state.token=action.payload.token
+            state.adminInfo=action.payload.userData
+            state.accessToken=action.payload.accessToken
             state.isLoading=false
             state.isAuth=true
         },
         loginFailure:(state,action)=>{
-            state.userInfo=null
+            state.adminInfo=null
             state.isLoading=false
             state.error=action.payload.error
             state.isAuth=false
-            state.token=null
+            state.accessToken=null
         },
         logout:(state)=>{
             state.isAuth=false
-            state.token=null
-            state.userInfo=null
+            state.accessToken=null
+            state.adminInfo=null
         }
     }
 

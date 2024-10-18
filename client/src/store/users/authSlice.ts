@@ -11,7 +11,7 @@ type InitialState={
     isLoading:boolean,
     isAuth:boolean,
     error:null | object,
-    token:string | null
+    accessToken:string | null
 }
 
 const initialState:InitialState = {
@@ -19,7 +19,7 @@ const initialState:InitialState = {
     isLoading:false,
     isAuth:false,
     error:null,
-    token:null
+    accessToken:null
 }
 
 const authSlice = createSlice({
@@ -32,7 +32,7 @@ const authSlice = createSlice({
         },
         loginSucess:(state,action)=>{
             state.userInfo=action.payload.userData
-            state.token=action.payload.token
+            state.accessToken=action.payload.accessToken
             state.isLoading=false
             state.isAuth=true
         },
@@ -41,17 +41,20 @@ const authSlice = createSlice({
             state.isLoading=false
             state.error=action.payload.error
             state.isAuth=false
-            state.token=null
+            state.accessToken=null
         },
         logout:(state)=>{
             state.isAuth=false
-            state.token=null
+            state.accessToken=null
             state.userInfo=null
+        },
+        setAccessToken:(state,action)=>{
+            state.accessToken=action.payload
         }
         
     }
 })
 
-export const {loginStart,loginFailure,loginSucess,logout} = authSlice.actions
+export const {loginStart,loginFailure,loginSucess,logout,setAccessToken} = authSlice.actions
 
 export default authSlice.reducer

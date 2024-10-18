@@ -2,11 +2,19 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
+import { axiosInit } from './utils/apis/axios/axiosInstance.ts'
+
+export const env = import.meta.env
+
+
+axiosInit()
+
+
+
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-      <App />
+        <App />
   </React.StrictMode>,
 )
 
-export const env = import.meta.env

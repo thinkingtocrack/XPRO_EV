@@ -7,7 +7,7 @@ import Dropdown from './loggedin/Dropdown'
 const Header = () => {
   const {isAuth} = useSelector((store:RootType)=>store.user.auth)
   return (
-    <header className='sticky top-0 z-10 backdrop-blur-xl'>
+    <header className='sticky top-0 z-10 backdrop-blur-lg'>
         <div className='flex items-center p-2'>
           <div className='flex-1'>
             <img src={logo}/>
@@ -15,7 +15,7 @@ const Header = () => {
           <div className='flex-1'>
             <div className='flex gap-3'>
               <NavLink to="/home" className={({isActive})=>isActive?"text-black font-bold text-2xl":"text-gray-500 font-bold text-2xl"} >Homes</NavLink>
-              <NavLink to="/Charge" className={({isActive})=>isActive?"text-black font-bold text-2xl":"text-gray-500 font-bold text-2xl"} >Charge</NavLink>
+              <NavLink onClick={(e)=>isAuth?true:e.preventDefault()} to="/Charge" className={({isActive})=>isActive?"text-black font-bold text-2xl":"text-gray-500 font-bold text-2xl"} >Charge</NavLink>
             </div>
           </div>
           <div className='flex'>
