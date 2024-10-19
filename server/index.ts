@@ -8,7 +8,7 @@ import configRouter from "./config"
 
 async function initServer(){
 	try {
-		await mongoose.connect('mongodb://127.0.0.1:27017/xpro')
+		await mongoose.connect(`mongodb+srv://${process.env.MONGODBUSERNAME}:${process.env.MONGODBPASSWORD}@suggo-test.t4xhyqk.mongodb.net/`)
 		const app = express()
 		app.listen(process.env.port,()=>{
 			console.log(`listening in port ${process.env.PORT}`)
