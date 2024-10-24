@@ -7,6 +7,17 @@ import useUserApi from '@/components/hooks/user/UserApiHook';
 import { AxiosInstance } from 'axios';
 import toast from 'react-hot-toast';
 import { SelectedStationType } from '@/pages/user/booking/BookingPage';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 
 const BookingInfo = ({selectedStation}:{selectedStation:SelectedStationType}) => {
   console.log(selectedStation)
@@ -133,10 +144,24 @@ const BookingInfo = ({selectedStation}:{selectedStation:SelectedStationType}) =>
         }
       </div>
       
-
-      <Button onClick={handleBooking} className="w-full" disabled={!date || !startTime || !endTime || bookingLoading}>
-        Book Slot
-      </Button>
+      <AlertDialog>
+        <AlertDialogTrigger asChild>
+          <Button className='w-full bg-gray-400' disabled={!date || !startTime || !endTime || bookingLoading} variant="outline">Book Slot</Button>
+        </AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+            <AlertDialogDescription>
+              Booking cannot be undone or cancelled.
+              Also will take <p className='text-red-400 inline font-medium'>Rs.20</p> from your wallet.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={handleBooking}>Continue</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };

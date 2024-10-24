@@ -1,4 +1,3 @@
-import { RootType } from "../../../store/configurestore";
 import { logout } from "../../../store/admin/authSlice";
 import { useDispatch } from "react-redux";
 
