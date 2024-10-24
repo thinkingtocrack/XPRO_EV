@@ -20,7 +20,7 @@ const walletScehma = new Schema({
             },
             for:{
                 type:String,
-                enum:['wallet','subscription'],
+                enum:['wallet','subscription','booking'],
             },
             amount:{
                 type:Number,

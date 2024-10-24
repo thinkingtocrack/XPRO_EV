@@ -4,6 +4,8 @@ import moment from "moment-timezone"
 import { IBookingRepository } from "../../../domain/repositories/booking/bookingRepositoryInterface";
 import bookingRepository from "../../../infrastructure/repositories/users/bookingrepository";
 import { BookingSchemaType } from "../../../infrastructure/models/booking";
+import walletRepository from "../../../infrastructure/repositories/users/walletRepository";
+import IWalletRepository from "../../../domain/repositories/wallet/IWalletRepository";
 
 
 
@@ -12,9 +14,11 @@ import { BookingSchemaType } from "../../../infrastructure/models/booking";
 
 class UserBookingInteractor implements IUserBookingInteractor{
     bookingRepository:IBookingRepository
+    walletRepository:IWalletRepository
 
-    constructor(bookingRepository:IBookingRepository){
+    constructor(bookingRepository:IBookingRepository,walletRepository:IWalletRepository){
         this.bookingRepository = bookingRepository
+        this.walletRepository = walletRepository
     }
 
     async scheduleChargerBooking({ userId, chargerId, startTime, endTime,date }: { userId: Schema.Types.ObjectId; chargerId: Schema.Types.ObjectId; startTime: string; endTime: string; date: string; }): Promise<{ status: boolean; message: string; data:{isBooked:boolean} }> {
@@ -32,6 +36,7 @@ class UserBookingInteractor implements IUserBookingInteractor{
                     endTime:utcEndTime,
                     status:'confirmed'
                 }
+                const payment = await this.walletRepository.updateWalletHistory(userId,{type:'debit',amount:20,for:'booking'})
                 const newBooking = await this.bookingRepository.newBooking(data)
                 return {status:true,message:'booking sucessfull',data:{isBooked:true}}
             }else{
@@ -162,7 +167,7 @@ class UserBookingInteractor implements IUserBookingInteractor{
 }
 
 
-const userBookingInteractor = new UserBookingInteractor(bookingRepository)
+const userBookingInteractor = new UserBookingInteractor(bookingRepository,walletRepository)
 
 
 export default userBookingInteractor

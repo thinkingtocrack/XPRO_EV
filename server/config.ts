@@ -8,8 +8,9 @@ import session from 'express-session'
 
 const configRouter = Router()
 
+
 configRouter.use(cors({
-	origin: process.env.CLIENT_BASE_URL,
+	origin: process.env.PRODUCTION==='TRUE'?process.env.CLIENT_BASE_URL_PRODUCTION as string : process.env.CLIENT_BASE_URL as string,
 	credentials: true
   }))
 configRouter.use(morgan('tiny'))
@@ -29,7 +30,7 @@ configRouter.use(session({
 	saveUninitialized: true,
 	cookie:{
 		httpOnly:true,
-		path:'/api/auth/user'
+		path:'/api/auth/user',
 	}
 }))
 
