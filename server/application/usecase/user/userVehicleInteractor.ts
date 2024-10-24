@@ -1,7 +1,6 @@
 import { IUserRepository } from "../../../domain/repositories/user/userRepositoryInterface";
 import smartcar from 'smartcar'
 import { userRepository } from "../../../infrastructure/repositories/users/userRepository";
-import { access } from "fs";
 
 
 const client = new smartcar.AuthClient({
